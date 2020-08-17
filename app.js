@@ -86,7 +86,7 @@ const buildManager = employee => {
             break
           case 'Finish':
             const html = render(employees)
-            fs.writeFileSync(path.join(__dirname, 'output', 'index.html'), html)
+            fs.writeFileSync(path.join(__dirname, 'output', 'team.html'), html)
             break
         }
       })
