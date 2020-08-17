@@ -137,7 +137,7 @@ const buildManager = employee => {
           case 'Manager':
             buildManager(employee)
             break
-          case 'Engineer':no
+          case 'Engineer':
             buildEngineer(employee)
             break
           case 'Intern':
@@ -149,7 +149,6 @@ const buildManager = employee => {
   }
   
   mainMenu()
-
 
 
 
