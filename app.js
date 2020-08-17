@@ -109,7 +109,7 @@ const buildManager = employee => {
       {
         type: 'list',
         name: 'role',
-        choices: ['Employee', 'Manager', 'Engineer', 'Intern'],
+        choices: ['Manager', 'Engineer', 'Intern'],
         message: 'Select the employee role:'
       },
       {
