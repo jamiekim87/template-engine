@@ -1,7 +1,7 @@
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const inquirer = require("inquirer");
+const { prompt } = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
@@ -19,9 +19,9 @@ let employees = []
 const buildManager = employee => {
     prompt([
       {
-        type: 'input',
+        type: 'number',
         name: 'officeNumber',
-        message: 'Enter the employee office number:'
+        message: 'Enter the manager office number:'
       }
     ])
       .then(({ officeNumber }) => {
@@ -33,10 +33,14 @@ const buildManager = employee => {
   
   const buildEngineer = employee => {
     prompt([
-      
+        {
+            type: 'input',
+            name: 'github',
+            message: 'Engineer Github username:'
+        }
     ])
       .then(({ github }) => {
-        employees.push(new Engineer(employee.name, employee.id, employee.email, employee.github))
+        employees.push(new Engineer(employee.name, employee.id, employee.email, github))
         subMenu()
       })
       .catch(err => console.log(err))
@@ -44,10 +48,15 @@ const buildManager = employee => {
 
   const buildIntern = employee => {
     prompt([
+        {
+            type: 'number',
+            name: 'school',
+            message: 'Intern office number:'
+        }
       
     ])
       .then(({ school }) => {
-        employees.push(new Intern(employee.name, employee.id, employee.email, employee.school))
+        employees.push(new Intern(employee.name, employee.id, employee.email, school))
         subMenu()
       })
       .catch(err => console.log(err))
@@ -77,7 +86,7 @@ const buildManager = employee => {
             break
           case 'Finish':
             const html = render(employees)
-            fs.writeFileSync(path.join(__dirname, 'output', 'team.html'), html)
+            fs.writeFileSync(path.join(__dirname, 'output', 'index.html'), html)
             break
         }
       })
@@ -99,9 +108,9 @@ const buildManager = employee => {
     prompt([
       {
         type: 'list',
-        name: 'type',
+        name: 'role',
         choices: ['Employee', 'Manager', 'Engineer', 'Intern'],
-        message: 'Select the employee:'
+        message: 'Select the employee role:'
       },
       {
         type: 'input',
@@ -114,7 +123,7 @@ const buildManager = employee => {
         message: 'Enter id of employee:'
       },
       {
-        type: 'number',
+        type: 'input',
         name: 'email',
         message: 'Enter employee email:'
       }
@@ -131,7 +140,7 @@ const buildManager = employee => {
           case 'Engineer':
             buildEngineer(employee)
             break
-            case 'Intern':
+          case 'Intern':
             buildIntern(employee)
             break
         }
