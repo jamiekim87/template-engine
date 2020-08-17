@@ -51,7 +51,7 @@ const buildManager = employee => {
         {
             type: 'number',
             name: 'school',
-            message: 'Intern office number:'
+            message: 'Intern school name:'
         }
       
     ])
